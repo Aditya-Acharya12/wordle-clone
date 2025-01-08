@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { gridDefault } from '../words';
 import Letter from './Letter';
 
 function Grid() {
-  const [grid, setGrid] = useState(gridDefault);
   return (
     <div className="board">
       <div className="row">
