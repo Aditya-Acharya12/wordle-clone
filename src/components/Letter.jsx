@@ -5,7 +5,7 @@ function Letter({ letterPos, attemptNo}) {
     const { grid } = useContext(AppContext);
     const letter = grid[attemptNo][letterPos];
   return (
-    <div className='letter'></div>
+    <div className='letter'>{letter}</div>
   )
 }
 

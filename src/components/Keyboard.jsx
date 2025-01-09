@@ -1,10 +1,38 @@
-import React from 'react'
+import React, { useCallback, useEffect, useContext } from 'react'
+import { AppContext } from '../App';
 import Key from './Key';
 
 function Keyboard() {
+  const {onSelectLetter, onEnter, onDelete} = useContext(AppContext);
   const keys1 = ["Q","W","E","R","T","Y","U","I","O","P"];
   const keys2 = ["A","S","D","F","G","H","J","K","L"];
   const keys3 = ["Z","X","C","V","B","N","M"];
+
+  const handleKeyboard = useCallback((e) => {
+    if (e.key === "Enter") {
+        onEnter();
+    }
+    else if (e.key === "Backspace") {
+        onDelete();
+    }
+    else {
+        const letter = e.key.toUpperCase();
+        // Combine all keys into one array and check once
+        const allKeys = [...keys1, ...keys2, ...keys3];
+        if (allKeys.includes(letter)) {
+            onSelectLetter(letter);
+        }
+    }
+}); 
+
+useEffect(() => {
+    document.addEventListener("keydown", handleKeyboard);
+
+    return () => {
+        document.removeEventListener("keydown", handleKeyboard); // Fixed typo in 'document'
+    };
+}, [handleKeyboard]);
+
 
   return (
     <div className = "keyboard">
