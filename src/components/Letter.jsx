@@ -2,10 +2,15 @@ import React, { useContext } from 'react';
 import { AppContext } from '../App';
 
 function Letter({ letterPos, attemptNo}) {
-    const { grid } = useContext(AppContext);
+    const { grid, correctWord, currAttempt} = useContext(AppContext);
     const letter = grid[attemptNo][letterPos];
+
+    const correct = correctWord[letterPos] === letter;
+    const almost = !correct && letter !== "" && correctWord.includes(letter);
+
+    const letterState = currAttempt.attemptNo > attemptNo && (correct ? "correct" : almost ? "almost" : "error");
   return (
-    <div className='letter'>{letter}</div>
+    <div className='letter' id = {letterState}>{letter}</div>
   )
 }
 

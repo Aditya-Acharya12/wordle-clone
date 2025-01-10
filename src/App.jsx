@@ -11,6 +11,7 @@ export const AppContext = createContext();
 function App() {
     const [grid, setGrid] = useState(gridDefault);
     const [currAttempt, setCurrAttempt] = useState({attemptNo: 0, letterPos: 0});
+    const correctWord = "RIGHT";
     //using createContext to pass the grid state to the lower components from the parent component
 
     const onSelectLetter = (keyVal) => {
@@ -39,7 +40,7 @@ function App() {
             <nav>
                 <h1>Wordle</h1>
             </nav>
-            <AppContext.Provider value={{grid, setGrid, currAttempt, setCurrAttempt, onSelectLetter, onEnter, onDelete}}>
+            <AppContext.Provider value={{grid, setGrid, currAttempt, setCurrAttempt, onSelectLetter, onEnter, onDelete, correctWord}}>
             <div className = "game">
             <Grid />
             <Keyboard />
