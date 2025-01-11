@@ -11,6 +11,10 @@ function App() {
     const [grid, setGrid] = useState(gridDefault);
     const [currAttempt, setCurrAttempt] = useState({attemptNo: 0, letterPos: 0});
     const [wordSet, setWordSet] = useState(new Set());
+    const [disabledLetters, setDisabledLetters] = useState([]);
+    const [alLetters, setAlLetters] = useState([]);
+    const [correctLetters, setCorrectLetters] = useState([]);
+
     const correctWord = "RIGHT";
     //using createContext to pass the grid state to the lower components from the parent component
 
@@ -57,7 +61,7 @@ function App() {
             <nav>
                 <h1>Wordle</h1>
             </nav>
-            <AppContext.Provider value={{grid, setGrid, currAttempt, setCurrAttempt, onSelectLetter, onEnter, onDelete, correctWord}}>
+            <AppContext.Provider value={{grid, setGrid, currAttempt, setCurrAttempt, onSelectLetter, onEnter, onDelete, correctWord, disabledLetters, setDisabledLetters,alLetters, setAlLetters,correctLetters, setCorrectLetters}}>
             <div className = "game">
             <Grid />
             <Keyboard />
