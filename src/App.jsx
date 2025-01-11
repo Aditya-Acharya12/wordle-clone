@@ -14,13 +14,14 @@ function App() {
     const [disabledLetters, setDisabledLetters] = useState([]);
     const [alLetters, setAlLetters] = useState([]);
     const [correctLetters, setCorrectLetters] = useState([]);
+    const [correctWord, setCorrectWord] = useState("");
 
-    const correctWord = "RIGHT";
     //using createContext to pass the grid state to the lower components from the parent component
 
     useEffect(() => {
         generateWordSet().then((words) => {
           setWordSet(words.wordSet);
+          setCorrectWord(words.todaysWord.toUpperCase());
         });
       }, []);
 
