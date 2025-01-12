@@ -45,20 +45,19 @@ function App() {
 
         if(wordSet.has(currWord.toLowerCase())){
             setCurrAttempt({attemptNo: currAttempt.attemptNo + 1, letterPos : 0});
+            if(currWord === correctWord){
+                setGameOver({gameOver: true, guessedWord: true});
+                return;
+            }
+    
+            if(currAttempt.attemptNo === 5)
+            {
+                setGameOver({gameOver: true, guessedWord: false});
+                return;
+            }
         }
         else{
             alert("Invalid word");
-        }
-
-        if(currWord === correctWord){
-            setGameOver({gameOver: true, guessedWord: true});
-            return;
-        }
-
-        if(currAttempt.attemptNo === 5)
-        {
-            setGameOver({gameOver: true, guessedWord: false});
-            return;
         }
     }
 
@@ -69,7 +68,6 @@ function App() {
         setGrid(newGrid);
         setCurrAttempt({...currAttempt, letterPos: currAttempt.letterPos -1});
     }
-
     return(
         <div className="App">
             <nav>
