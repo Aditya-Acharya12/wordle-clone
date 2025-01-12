@@ -3,6 +3,7 @@ import "./App.css";
 import Grid from "./components/Grid";
 import Keyboard from "./components/Keyboard";
 import { gridDefault, generateWordSet } from "./words";
+import GameOver from "./components/GameOver";
 
 export const AppContext = createContext();
 // to access the state in other components, we need to wrap the parent component in the createContext function
@@ -15,6 +16,7 @@ function App() {
     const [alLetters, setAlLetters] = useState([]);
     const [correctLetters, setCorrectLetters] = useState([]);
     const [correctWord, setCorrectWord] = useState("");
+    const [gameOver, setGameOver] = useState({gameOver : false, guessedWord : false});
 
     //using createContext to pass the grid state to the lower components from the parent component
 
@@ -47,6 +49,17 @@ function App() {
         else{
             alert("Invalid word");
         }
+
+        if(currWord === correctWord){
+            setGameOver({gameOver: true, guessedWord: true});
+            return;
+        }
+
+        if(currAttempt.attemptNo === 5)
+        {
+            setGameOver({gameOver: true, guessedWord: false});
+            return;
+        }
     }
 
     const onDelete = () => {
@@ -57,15 +70,16 @@ function App() {
         setCurrAttempt({...currAttempt, letterPos: currAttempt.letterPos -1});
     }
 
+    console.log(correctWord);
     return(
         <div className="App">
             <nav>
                 <h1>Wordle</h1>
             </nav>
-            <AppContext.Provider value={{grid, setGrid, currAttempt, setCurrAttempt, onSelectLetter, onEnter, onDelete, correctWord, disabledLetters, setDisabledLetters,alLetters, setAlLetters,correctLetters, setCorrectLetters}}>
+            <AppContext.Provider value={{grid, setGrid, currAttempt, setCurrAttempt, onSelectLetter, onEnter, onDelete, correctWord, disabledLetters, setDisabledLetters,alLetters, setAlLetters,correctLetters, setCorrectLetters, gameOver, setGameOver}}>
             <div className = "game">
             <Grid />
-            <Keyboard />
+            {gameOver.gameOver ? <GameOver /> : <Keyboard /> }
             </div>
             
             </AppContext.Provider>
