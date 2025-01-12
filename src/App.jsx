@@ -70,7 +70,6 @@ function App() {
         setCurrAttempt({...currAttempt, letterPos: currAttempt.letterPos -1});
     }
 
-    console.log(correctWord);
     return(
         <div className="App">
             <nav>

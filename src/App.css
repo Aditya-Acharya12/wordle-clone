@@ -70,21 +70,76 @@ nav h1 {
   color: white;
   font-family: Arial, Helvetica, sans-serif;
   text-transform: uppercase;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  transform-style: preserve-3d;
+}
+
+@keyframes flipTile {
+  0% {
+    transform: rotateX(0deg);
+    background-color: #121212;
+    border-color: #3a393c;
+  }
+  45% {
+    transform: rotateX(90deg);
+    background-color: #121212;
+    border-color: #3a393c;
+  }
+  55% {
+    transform: rotateX(90deg);
+    background-color: var(--background-color);
+    border-color: var(--border-color);
+  }
+  100% {
+    transform: rotateX(0deg);
+    background-color: var(--background-color);
+    border-color: var(--border-color);
+  }
+}
+
+.letter.flip {
+  animation: flipTile 0.6s ease;
+}
+
+.letter.filled
+{
+  animation : bounce 0.2s ease-in-out forwards;
+}
+
+.letter[data-pos="0"].flip { animation-delay: 0s; }
+.letter[data-pos="1"].flip { animation-delay: 0.1s; }
+.letter[data-pos="2"].flip { animation-delay: 0.2s; }
+.letter[data-pos="3"].flip { animation-delay: 0.3s; }
+.letter[data-pos="4"].flip { animation-delay: 0.4s; }
+
+.persistent-correct {
+  background-color: #528d4e !important;
+  border-color: #528d4e !important;
+}
+
+.persistent-almost {
+  background-color: #b49f39 !important;
+  border-color: #b49f39 !important;
+}
+
+.persistent-error {
+  background-color: #3a393c !important;
+  border-color: #3a393c !important;
 }
 
 #correct {
-  background-color: #528d4e;
-  border-color: #528d4e;
+  --background-color: #528d4e;
+  --border-color: #528d4e;
 }
 
 #almost {
-  background-color: #b49f39;
-  border-color: #b49f39;
+  --background-color: #b49f39;
+  --border-color: #b49f39;
 }
 
 #error {
-  background-color: #3a393c;
-  border-color: #3a393c;
+  --background-color: #3a393c;
+  --border-color: #3a393c;
 }
 
 .keyboard {
@@ -122,4 +177,40 @@ nav h1 {
 
 #big {
   width: 65px;
+}
+@keyframes flipTile {
+  0% {
+    transform: rotateX(0deg);
+    background-color: #121212;
+    border-color: #3a393c;
+  }
+  45% {
+    transform: rotateX(90deg);
+    background-color: #121212;
+    border-color: #3a393c;
+  }
+  55% {
+    transform: rotateX(90deg);
+    background-color: var(--background-color);
+    border-color: var(--border-color);
+  }
+  100% {
+    transform: rotateX(0deg);
+    background-color: var(--background-color);
+    border-color: var(--border-color);
+  }
+}
+
+@keyframes bounce {
+  0%{
+    transform: scale(1);
+    border-color: #626161;
+  }
+  50%{
+    transform: scale(1.2);
+  }
+  100%{
+    transform: scale(1);
+    border-color: #333;
+  }
 }
