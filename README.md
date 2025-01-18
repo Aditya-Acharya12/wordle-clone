@@ -46,7 +46,7 @@ Follow these steps to get the Wordle clone up and running on your local machine.
    ```bash
    npm run dev
    ```
-4.**Open your browser**: Navigate to http://localhost:3000 to play the game.
+4. **Open your browser**: Navigate to http://localhost:3000 to play the game.
 
 ---
 
